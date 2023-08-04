@@ -46,4 +46,21 @@ public class AuthController {
 		}
 	}
 
+//da verificare perche non funziona il metodo consi con il rest controller
+
+//	@PostMapping("/login")
+//	public LoginSuccessful login(@RequestBody UtenteLoginPayload body) {
+//
+//
+//		Utente utente = utenteService.findByEmail(body.getEmail());
+//		if (body.getPassword().equals(utente.getPassword())) {
+//
+//			String token = jwtTools.creaToken(utente);
+//			return new LoginSuccessful(token);
+//
+//		} else {
+//			throw new UnauthorizedException("Credenziali non valide!");
+//		}
+//	}
+
 }
