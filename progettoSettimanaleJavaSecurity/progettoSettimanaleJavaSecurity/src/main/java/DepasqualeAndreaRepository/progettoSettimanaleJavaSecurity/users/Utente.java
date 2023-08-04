@@ -34,11 +34,11 @@ public class Utente implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	public Utente(String name, String surname, String password, String email) {
+	public Utente(String name, String surname, String email, String password) {
 		this.name = name;
 		this.surname = surname;
-		this.password = password;
 		this.email = email;
+		this.password = password;
 		this.role = Role.UTENTE;
 	}
 
