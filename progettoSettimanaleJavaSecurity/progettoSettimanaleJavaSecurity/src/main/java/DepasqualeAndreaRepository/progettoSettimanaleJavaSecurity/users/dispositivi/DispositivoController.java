@@ -48,20 +48,20 @@ public class DispositivoController {
 //	}
 
 	@GetMapping("/{deviceId}")
-	public Dispositivi findById(@PathVariable UUID Id) {
-		return dispositivoService.findById(Id);
+	public Dispositivi findById(@PathVariable UUID deviceId) {
+		return dispositivoService.findById(deviceId);
 
 	}
 
 	@PutMapping("/{deviceId}")
-	public Dispositivi updateDispositivo(@PathVariable UUID Id, @RequestBody DispositiviRequestBody body) {
-		return dispositivoService.findByIdAndUpdate(Id, body);
+	public Dispositivi updateDispositivo(@PathVariable UUID deviceId, @RequestBody DispositiviRequestBody body) {
+		return dispositivoService.findByIdAndUpdate(deviceId, body);
 	}
 
 	@DeleteMapping("/{deviceId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteUtente(@PathVariable UUID Id) {
-		dispositivoService.findByIdAndDelete(Id);
+	public void deleteUtente(@PathVariable UUID deviceId) {
+		dispositivoService.findByIdAndDelete(deviceId);
 	}
 
 }

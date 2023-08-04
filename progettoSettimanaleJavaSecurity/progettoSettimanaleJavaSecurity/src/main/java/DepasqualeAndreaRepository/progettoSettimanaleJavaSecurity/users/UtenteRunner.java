@@ -27,10 +27,11 @@ public class UtenteRunner implements CommandLineRunner {
 		for (int i = 0; i < 30; i++) {
 			String name = faker.name().firstName();
 			String surname = faker.name().lastName();
+			String username = faker.name().username();
 			String email = faker.internet().emailAddress();
 			String password = faker.lorem().characters(6, 12);
-			UtenteRequestPayload utente = new UtenteRequestPayload(name, surname, email, password);
-			utenteService.creaUtente(utente);
+			UtenteRequestPayload utente = new UtenteRequestPayload(name, surname, username, email, password);
+			// utenteService.creaUtente(utente);
 		}
 //		try {
 //

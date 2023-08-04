@@ -41,8 +41,8 @@ public class UtenteController {
 //	}
 
 	@GetMapping("/{userId}")
-	public Utente findById(@PathVariable UUID usId) {
-		return utenteService.findById(usId);
+	public Utente findById(@PathVariable UUID userId) {
+		return utenteService.findById(userId);
 
 	}
 
@@ -53,8 +53,8 @@ public class UtenteController {
 
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteUtente(@PathVariable UUID usId) {
-		utenteService.findByIdAndDelete(usId);
+	public void deleteUtente(@PathVariable UUID userId) {
+		utenteService.findByIdAndDelete(userId);
 	}
 
 }

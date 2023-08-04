@@ -26,6 +26,7 @@ public class Utente implements UserDetails {
 	@Id
 	@GeneratedValue
 	private UUID id;
+	private String username;
 	private String name;
 	private String surname;
 	private String password;
@@ -34,9 +35,10 @@ public class Utente implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	public Utente(String name, String surname, String email, String password) {
+	public Utente(String name, String surname, String username, String email, String password) {
 		this.name = name;
 		this.surname = surname;
+		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.role = Role.UTENTE;
@@ -51,7 +53,7 @@ public class Utente implements UserDetails {
 	@Override
 	public String getUsername() {
 
-		return this.email;
+		return this.username;
 	}
 
 	@Override
