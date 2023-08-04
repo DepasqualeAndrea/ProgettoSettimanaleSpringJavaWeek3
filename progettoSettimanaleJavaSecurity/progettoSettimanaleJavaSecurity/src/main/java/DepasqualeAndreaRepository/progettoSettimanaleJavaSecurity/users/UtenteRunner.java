@@ -1,14 +1,10 @@
 package DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.github.javafaker.Faker;
-
-import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.payload.UtenteRequestPayload;
+import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.dispositivi.DispositivoService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -16,28 +12,34 @@ import lombok.extern.slf4j.Slf4j;
 public class UtenteRunner implements CommandLineRunner {
 	@Autowired
 	UtenteService utenteService;
+	@Autowired
+	DispositivoService dispositivoService;
 
 	@Override
 	public void run(String... args) throws Exception {
+//		Faker faker = new Faker(new Locale("it"));
+//
+//		for (int i = 0; i < 30; i++) {
+//			String name = faker.name().firstName();
+//			String surname = faker.name().lastName();
+//			String email = faker.internet().emailAddress();
+//			String password = faker.lorem().characters(6, 12);
+//			UtenteRequestPayload utente = new UtenteRequestPayload(name, surname, email, password);
+//			// utenteService.creaUtente(utente);
+//		}
 //		try {
 //
-//			// UtenteRequestPayload ivan = new UtenteRequestPayload("Ivan", "Iasing",
-//			// "Ivankof@Gmail.com", "Mamba123");
-//			// utenteService.creaUtente(ivan);
+//			UtenteRequestPayload dottore = new UtenteRequestPayload("mio", "dio", "asntocielo@Gmail.com",
+//					"terribilie12");
+//			utenteService.creaUtente(dottore);
+//			log.info("utente salvato con successo");
+//
+//			Dispositivi dispositivo = new Dispositivi(TipoDispositivo.TABLET, StatoDispositivo.ASSEGNATO);
+//			// dispositivoService.creaDispositivo(dispositivo);
 //			log.info("utente salvato con successo");
 //
 //		} catch (NotFoundException e) {
 //			log.error(e.getMessage());
 //		}
-		Faker faker = new Faker(new Locale("it"));
-
-		for (int i = 0; i < 30; i++) {
-			String name = faker.name().firstName();
-			String surname = faker.name().lastName();
-			String email = faker.internet().emailAddress();
-			String password = "1234";
-			UtenteRequestPayload utente = new UtenteRequestPayload(name, surname, email, password);
-			// utenteService.creaUtente(utente);
-		}
 	}
 }

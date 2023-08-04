@@ -30,7 +30,7 @@ public class JTWFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String header = request.getHeader("Authorization");// estraggo il token dall'header
-		if (header == null || !header.startsWith("Bearer"))
+		if (header == null || !header.startsWith("Bearer "))
 			throw new UnauthorizedException("Inserisci il token nell'autorization Header");
 		String token = header.substring(7);
 		System.out.println("Token: -> " + token);
@@ -52,8 +52,7 @@ public class JTWFilter extends OncePerRequestFilter {
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) {
 		System.out.println(request.getServletPath());
-		return new AntPathMatcher().match("/auth/**", request.getServletPath()); // bypass per solo alcune richieste su
-																					// /auth/**
+		return new AntPathMatcher().match("/auth/**", request.getServletPath());
 	}
 
 }

@@ -18,9 +18,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@SuppressWarnings("serial")
 @Entity
-@Table(name = "Utenti")
+@Table(name = "utenti")
 @Data
 @NoArgsConstructor
 public class Utente implements UserDetails {
@@ -29,18 +28,18 @@ public class Utente implements UserDetails {
 	private UUID id;
 	private String name;
 	private String surname;
-	private String Password;
-	@Column(nullable = false, unique = true)
+	private String password;
+	@Column(nullable = true, unique = true)
 	private String email;
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	public Utente(String name, String surname, String email, String password, Role role) {
+	public Utente(String name, String surname, String password, String email) {
 		this.name = name;
 		this.surname = surname;
+		this.password = password;
 		this.email = email;
-		this.Password = password;
-		this.role = role;
+		this.role = Role.UTENTE;
 	}
 
 	@Override

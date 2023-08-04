@@ -20,14 +20,11 @@ public class SecurityConf {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors(c -> c.disable());
 		http.csrf(c -> c.disable());
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**").authenticated()); // accedo ad endpoint
-																								// specifici solo cn la
-																								// autenticazione
 
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll()); // permit all mi permette di
-																							// proseguire anche senza
-																							// token
+		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/utenti/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
 
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

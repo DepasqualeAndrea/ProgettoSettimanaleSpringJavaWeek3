@@ -3,11 +3,11 @@ package DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.exception.UnauthorizedException;
 import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.Utente;
@@ -15,7 +15,7 @@ import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.UtenteSe
 import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.payload.UtenteLoginPayload;
 import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.payload.UtenteRequestPayload;
 
-@Controller
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
 	@Autowired
@@ -26,20 +26,23 @@ public class AuthController {
 
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Utente salvaUtente(@RequestBody UtenteRequestPayload body) {
-		Utente creato = utenteService.creaUtente(body);
-		return creato;
+	public Utente saveUser(@RequestBody UtenteRequestPayload body) {
+		Utente created = utenteService.creaUtente(body);
+		return created;
 	}
 
 	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody UtenteLoginPayload body) {
-		Utente utente = utenteService.findByEmail(body.getEmail()); // verifico che l'email esista
-		if (body.getPassword().equals(utente.getPassword())) { // verifico che la password sia la stessa presente nel bd
+		// devo provare a modificare String
+
+		Utente utente = utenteService.findByEmail(body.getEmail());
+
+		if (body.getPassword().equals(utente.getPassword())) {
+
 			String token = jwtTools.creaToken(utente);
-			System.out.println(token);
-			return new ResponseEntity<>(token, HttpStatus.OK);
+			return new ResponseEntity<>(token, HttpStatus.OK); // 200
 		} else {
-			throw new UnauthorizedException("Credenziali non valide!");
+			throw new UnauthorizedException("Credenziali non valide"); // 401
 		}
 	}
 

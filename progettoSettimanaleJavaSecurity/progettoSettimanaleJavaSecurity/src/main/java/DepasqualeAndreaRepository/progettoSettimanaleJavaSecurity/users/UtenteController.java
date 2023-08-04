@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import DepasqualeAndreaRepository.progettoSettimanaleJavaSecurity.users.payload.UtenteRequestPayload;
 
-@RestController
 @RequestMapping("/utenti")
+@RestController
 public class UtenteController {
 	private final UtenteService utenteService;
 
@@ -33,18 +33,25 @@ public class UtenteController {
 		return utenteService.find(page, size, sortBy);
 	}
 
-	@GetMapping("/{utenteId}")
+//	@GetMapping
+//	public Page<Utente> getUsers(@RequestParam(defaultValue = "0") int page,
+//			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//		return utenteService.find(page, size, sortBy);
+//	}
+
+	@GetMapping("/{userId}")
 	public Utente findById(@PathVariable UUID usId) {
 		return utenteService.findById(usId);
 
 	}
 
-	@PutMapping("/{utenteId}")
+	@PutMapping("/{userId}")
 	public Utente updateUser(@PathVariable UUID userId, @RequestBody UtenteRequestPayload body) {
 		return utenteService.findByIdAndUpdate(userId, body);
 	}
 
-	@DeleteMapping("/{utenteId}")
+	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteUtente(@PathVariable UUID usId) {
 		utenteService.findByIdAndDelete(usId);

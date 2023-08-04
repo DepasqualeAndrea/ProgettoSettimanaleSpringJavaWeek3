@@ -26,8 +26,7 @@ public class UtenteService {
 		utenteRepo.findByEmail(body.getEmail()).ifPresent(u -> {
 			throw new BadRequestException("l'email inserita non è valida");
 		});
-		Utente newUtente = new Utente(body.getName(), body.getSurname(), body.getEmail(), body.getPassword(),
-				Role.UTENTE);
+		Utente newUtente = new Utente(body.getName(), body.getSurname(), body.getEmail(), body.getPassword());
 		return utenteRepo.save(newUtente);
 	}
 
