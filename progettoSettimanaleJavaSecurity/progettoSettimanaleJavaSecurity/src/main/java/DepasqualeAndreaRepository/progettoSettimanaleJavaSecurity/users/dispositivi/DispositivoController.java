@@ -40,12 +40,6 @@ public class DispositivoController {
 		Dispositivi dispositiviCreato = dispositivoService.save(body, idUtente);
 		return dispositiviCreato;
 	}
-//	@GetMapping
-//	public Page<Dispositivi> getDispositivi(@RequestParam(defaultValue = "0") int page,
-//			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
-//		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-//		return dispositivoService.find(page, size, sortBy);
-//	}
 
 	@GetMapping("/{deviceId}")
 	public Dispositivi findById(@PathVariable UUID deviceId) {

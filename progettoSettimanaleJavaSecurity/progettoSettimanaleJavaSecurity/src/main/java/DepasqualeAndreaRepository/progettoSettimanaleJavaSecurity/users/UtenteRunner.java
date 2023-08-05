@@ -32,6 +32,7 @@ public class UtenteRunner implements CommandLineRunner {
 			String password = faker.lorem().characters(6, 12);
 			UtenteRequestPayload utente = new UtenteRequestPayload(name, surname, username, email, password);
 			// utenteService.creaUtente(utente);
+
 		}
 //		try {
 //
